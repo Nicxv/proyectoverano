@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-menu contentId="main-content">
+    <ion-header>
+      
+      <ion-toolbar>
+        <ion-card>
+          <img src="assets/icon/phoneprime.png" />
+        </ion-card>
+        <ion-title> </ion-title>
+        <div  class="registro">
+          <a href="http://localhost:8100/login">
+          <ion-button  class="color" expand="block">Iniciar sesion</ion-button> 
+        </a>
+          <a href="http://localhost:8100/registro">
+          <ion-button class="color" expand="block">Registrarse</ion-button>
+        </a>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">This is the menu content.</ion-content>
+    
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-card>
+          <img src="assets/icon/phoneprime.png" />
+        </ion-card>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+  </div>
+
+  
+</ion-content>

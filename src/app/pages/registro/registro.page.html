@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar>
+    <ion-card>
+      <img src="assets/icon/phoneprime.png" />
+    </ion-card>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-card>
+    <ion-card-header>
+      
+      <ion-title class="titulo">Registro</ion-title>
+    
+    </ion-card-header>
+    <ion-card-content> <ion-list>
+        <ion-list>
+          <ion-input label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre"></ion-input>
+
+          
+
+          <ion-input label="Edad" label-placement="floating" placeholder="Ingrese Edad"></ion-input>
+          <ion-input label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario"></ion-input>
+
+          
+
+          <ion-input label="Contraseña" type="password" label-placement="floating" placeholder="Ingrese contraseña"></ion-input>
+
+          <ion-input label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña"></ion-input>
+          <ion-input label="Solid input" label-placement="floating" placeholder="Enter text"></ion-input>
+
+          <ion-input type="email" label="Email" labelPlacement="floating" helperText="Imgrese su Email"
+            errorText="Invalid email" ngModel email></ion-input>
+
+          
+        </ion-list>
+      </ion-list>
+      <div class="registro">
+        <ion-button class="color" expand="block">registarse</ion-button> <ion-button class="color" expand="block">limpiar</ion-button>
+      </div>
+    </ion-card-content>
+
+
+
+  </ion-card>
+
+
+</ion-content>

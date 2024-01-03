@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>pagina1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p class="color_texto">Barra de busqueda {{ primerNombre }}</p>
+  <ion-searchbar placeholder="Escribe una palabra"></ion-searchbar>
+  <div>
+    <img width="150px" src="assets/icon/descarga.jpg" alt="cr7">
+  </div>
+  <ion-list>
+    <ion-item>
+    <ion-input [(ngModel)]="usuario" label="Username:" type="text" labelPlacement="floating" placeholder="Enter text"></ion-input>
+    <ion-input [(ngModel)]="clave" label="Password:" type="password" labelPlacement="floating" placeholder="**********"></ion-input>
+    </ion-item>
+    <br>
+    <div>{{ usuario }}</div>
+    <br>
+    <div>{{ clave }}</div>
+    <br>
+    <div class="divbtn">
+      <ion-button [routerLink]="['/pagina4']" size="small" expand="block">ir a login</ion-button>
+      <ion-button (click)="irpagina2()" size="small" expand="block">ir a pag2</ion-button>
+      <ion-button (click)="login()" size="small" expand="block">logear</ion-button>
+    </div>
+
+</ion-list>
+
+</ion-content>
