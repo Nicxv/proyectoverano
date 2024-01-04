@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -20,6 +20,18 @@ export class Pagina1Page implements OnInit {
 
   userCorrecto: string ="Admin";
   claveCorrecta: string ="123456789";
+
+  listaPersonas: any = [
+    {
+      nombre: "Victor",
+      edad: 37 
+    
+    },
+    {
+      nombre: "Maria",
+      edad: 29
+    }
+  ]
 
   constructor(private alertController: AlertController, private toastController: ToastController, private router: Router) { }
 //alerta insrusiva
@@ -74,7 +86,14 @@ export class Pagina1Page implements OnInit {
   login(){
     if(this.usuario == this.userCorrecto && this.clave == this.claveCorrecta){
       this.presentAlert("Bienvenido");
-      this.router.navigate(['/home']);
+      //crear variable de contexto
+      let navigationExtras: NavigationExtras = {
+        state: {
+          usuarioEnviado: this.usuario,
+          claveEnviado: this.clave
+        }
+      }
+      this.router.navigate(['/pagina2'], navigationExtras);
     }else{
       this.presentAlert("Usuario y/o Clave incorrecta");
     }

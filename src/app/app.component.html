@@ -1,13 +1,30 @@
 <ion-app>
-  <ion-router-outlet>
-    
-    
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn" [routerLink]="['/home']">Inicio</ion-button></div>
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn"  [routerLink]="['/samsung']">Samsung</ion-button></div>
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn"  [routerLink]="['/xiaomi']">Xiaomi</ion-button></div>
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn"  [routerLink]="['/iphone']">iphone</ion-button></div>
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn"  [routerLink]="['/login']">Iniciar sesion</ion-button></div>
-    <div class="botones"><ion-button fill="clear" expand="full" class="btn"  [routerLink]="['/registro']">Registrarse</ion-button></div>
-  
-  </ion-router-outlet>
+
+  <ion-menu contentId="main-content">
+
+    <ion-list>
+
+      <ion-menu-toggle>
+        <ion-item [routerLink]="'/pagina1'">
+        <ion-icon name="apps-outline" slot="start"></ion-icon>
+        <ion-label>pagina1</ion-label>
+      </ion-item>
+   
+    <ion-item [routerLink]="'/pagina2'">
+      <ion-icon name="airplane-outline" slot="start"></ion-icon>
+      <ion-label>pagina2</ion-label>
+    </ion-item>
+
+    <ion-item [routerLink]="'/home'">
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-item>
+
+      </ion-menu-toggle>
+
+  </ion-list>
+
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>
