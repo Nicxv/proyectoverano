@@ -1,32 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>samsung3</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">samsung3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Image-Slider</title>
 </head>
 <body>
 
-    <div class="contenedor">
-        <div class="tarjeta">
-            <!-- <h2 class="canal">El Código <br> Bravo</h2> -->
-        </div>
-    </div>
-    
-</body>
-</html>
+    <div class="container">
+        <span class="slider" id="slider1"></span>
+        <span class="slider" id="slider2"></span>
+        <span class="slider" id="slider3"></span>
+        <span class="slider" id="slider4"></span>
+        <span class="slider" id="slider5"></span>
+        <span class="slider" id="slider6"></span>
+        <span class="slider" id="slider7"></span>
+
+        <div class="imgContainer">
+
+          <ion-content>
+            <div class="container">
+              <ion-slides pager="true">
+                <ion-slide id="slide_1">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/48571/2_1000.jpg?t=1684963833469" />
+                </ion-slide>
+                <ion-slide id="slide_2">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/45510/3_1000.jpg?t=1659114061282" />
+                </ion-slide>
+                <ion-slide id="slide_3">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/48571/2_1000.jpg?t=1684963833469" />
+                </ion-slide>
+                <ion-slide id="slide_4">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/48571/2_1000.jpg?t=1684963833469" />
+                </ion-slide>
+                <ion-slide id="slide_5">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/48571/2_1000.jpg?t=1684963833469" />
+                </ion-slide>
+                <ion-slide id="slide_6">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/45510/3_1000.jpg?t=1659114061282" />
+                </ion-slide>
+                <ion-slide id="slide_7">
+                  <img alt="Silhouette of mountains" src="https://www.pcfactory.cl/public/foto/45510/3_1000.jpg?t=1659114061282" />
+                </ion-slide>
+              </ion-slides>
+            </div>
+          </ion-content>

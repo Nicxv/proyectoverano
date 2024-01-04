@@ -1,20 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+// src/app/home/home.module.ts
 
 import { IonicModule } from '@ionic/angular';
-
-import { Samsung3PageRoutingModule } from './samsung3-routing.module';
-
-import { Samsung3Page } from './samsung3.page';
+import { HomePage } from './home.page';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     IonicModule,
-    Samsung3PageRoutingModule
+    CommonModule,
+    RouterModule.forChild([{ path: '', component: HomePage }])
   ],
-  declarations: [Samsung3Page]
+  declarations: [HomePage]
 })
-export class Samsung3PageModule {}
+export class HomePageModule {}
