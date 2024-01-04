@@ -17,4 +17,4 @@ import { Samsung3Page } from './samsung3.page';
   ],
   declarations: [Samsung3Page]
 })
-export class Samsung3PageModule {}
+export class Samsung2PageModule {}
