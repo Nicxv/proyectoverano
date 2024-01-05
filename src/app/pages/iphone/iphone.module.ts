@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { IphonePageRoutingModule } from './iphone-routing.module';
 
 import { IphonePage } from './iphone.page';
+import { ComponentsModule } from 'src/app/components/componente1/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     IphonePageRoutingModule
   ],
   declarations: [IphonePage]

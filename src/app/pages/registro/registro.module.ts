@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { RegistroPageRoutingModule } from './registro-routing.module';
 
 import { RegistroPage } from './registro.page';
+import { ComponentsModule } from 'src/app/components/componente1/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RegistroPageRoutingModule
   ],
   declarations: [RegistroPage]
