@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { Pagina2PageRoutingModule } from './pagina2-routing.module';
 
 import { Pagina2Page } from './pagina2.page';
+import { ComponentsModule } from 'src/app/components/componente1/components.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { Pagina2Page } from './pagina2.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     Pagina2PageRoutingModule
   ],
   declarations: [Pagina2Page, ]
