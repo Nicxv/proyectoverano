@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
+  },  {
+    path: 'pantallaadmin',
+    loadChildren: () => import('./pages/pantallaadmin/pantallaadmin.module').then( m => m.PantallaadminPageModule)
   },
+
 
 ];
 
