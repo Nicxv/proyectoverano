@@ -1,0 +1,85 @@
+.botones-achicados {
+    font-size: 12px;
+    padding: 6px 12px;
+    
+  }
+  
+  .imagen-achicada {
+    width: 210px; 
+    height: auto;
+  }
+  
+  .imagen-achicada2 {
+    width: 170px; 
+    height: auto;
+  }
+  
+  .botones-achicados {
+    font-size: 12px;
+    padding: 6px 12px;
+    
+  
+    
+  }
+  .title {
+    color: rgb(255, 255, 255); 
+  }
+  
+  $colors: (
+  verde-personalizado: hwb(120 16% 45% / 0.918) 
+  );
+  
+  .item{
+  padding-inline: 100px;
+  }  
+  .product-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 15px 0   rgb(5, 230, 72);
+  border-radius: 40px;
+  padding: 40px;
+  margin: 20px;
+  }
+  .product-info {
+  text-align: center;
+  }
+  ion-header ion-toolbar {
+  --background: #322E2E; 
+  }
+  ion-header ion-toolbar:nth-child(2) {
+  --background: #322E2E; 
+  }
+  ion-header, ion-toolbar, ion-content {
+  --background: #ffffff; 
+  }
+  .btn{
+  color: white;
+  background-color: #F43435;
+  border-radius: 10px ;
+  margin-bottom: 30px;
+  
+  
+  }
+      .read-more-button {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 350px; /* Ajusta el ancho máximo según tus preferencias */
+        margin: 0 auto;
+        display: block;
+        background-color: #322E2E;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 15px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+          background-color: #322E2E;
+        }
+      }
+  
+    
+  
