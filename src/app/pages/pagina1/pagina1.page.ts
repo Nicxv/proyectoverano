@@ -20,7 +20,7 @@ export class Pagina1Page implements OnInit {
 
   userCorrecto: string ="Admin";
   claveCorrecta: string ="123456789";
-
+ 
   listaPersonas: any = [
     {
       nombre: "Victor",

@@ -20,23 +20,24 @@
     </ion-card-header>
     <ion-card-content> <ion-list>
         <ion-list>
-          <ion-input label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre"></ion-input>
+          <ion-input  [(ngModel)]="nombre" label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre"></ion-input>
 
           
 
-          <ion-input label="Edad" label-placement="floating" placeholder="Ingrese Edad"></ion-input>
-          <ion-input label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario"></ion-input>
+          <ion-input [(ngModel)]="edad" label="Edad" label-placement="floating" placeholder="Ingrese Edad"></ion-input>
+          <ion-input [(ngModel)]="nombreUsuario" label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario"></ion-input>
 
           
 
-          <ion-input label="Contraseña" type="password" label-placement="floating" placeholder="Ingrese contraseña"></ion-input>
+          <ion-input [(ngModel)]="clave" label="Contraseña" type="password" label-placement="floating" placeholder="Ingrese contraseña"></ion-input>
 
-          <ion-input label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña"></ion-input>
-          <ion-input label="Solid input" label-placement="floating" placeholder="Enter text"></ion-input>
+          <ion-input [(ngModel)]="confirmarClave" label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña"></ion-input>
+          <ion-input [(ngModel)]="telefono" label="Telefono" label-placement="floating" placeholder="+569-88888888"></ion-input>
 
-          <ion-input type="email" label="Email" labelPlacement="floating" helperText="Imgrese su Email"
+          <ion-input type="email" [(ngModel)]="mail" label="Email" labelPlacement="floating" helperText="Imgrese su Email"
             errorText="Invalid email" ngModel email></ion-input>
 
+            
           
         </ion-list>
       </ion-list>
