@@ -21,7 +21,7 @@ export class Pagina2Page implements OnInit {
         this,this.claveRecibida = this.router.getCurrentNavigation()?.extras?.
         state?.['claveEnviado'];
         this.usuarioRecibido = this.router.getCurrentNavigation()?.extras?.
-        state?.['usuarioEnviado'];
+        state?.['usuarioEnviado']; 
 
       }
     })

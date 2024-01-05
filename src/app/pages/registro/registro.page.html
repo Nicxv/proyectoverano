@@ -20,29 +20,37 @@
     </ion-card-header>
     <ion-card-content> <ion-list>
         <ion-list>
-          <ion-input  [(ngModel)]="nombre" label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre"></ion-input>
-
-          
-
-          <ion-input [(ngModel)]="edad" label="Edad" label-placement="floating" placeholder="Ingrese Edad"></ion-input>
-          <ion-input [(ngModel)]="nombreUsuario" label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario"></ion-input>
-
-          
-
-          <ion-input [(ngModel)]="clave" label="Contraseña" type="password" label-placement="floating" placeholder="Ingrese contraseña"></ion-input>
-
-          <ion-input [(ngModel)]="confirmarClave" label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña"></ion-input>
-          <ion-input [(ngModel)]="telefono" label="Telefono" label-placement="floating" placeholder="+569-88888888"></ion-input>
-
-          <ion-input type="email" [(ngModel)]="mail" label="Email" labelPlacement="floating" helperText="Imgrese su Email"
+          <ion-item>
+            <ion-input  [(ngModel)]="nombre" label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input [(ngModel)]="edad" label="Edad" label-placement="floating" placeholder="Ingrese Edad"></ion-input>
+          </ion-item>
+          <ion-item> 
+            <ion-input [(ngModel)]="usuario" label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario"></ion-input></ion-item>
+          <ion-item>         
+            <ion-input [(ngModel)]="clave" label="Contraseña" type="password" label-placement="floating" placeholder="Ingrese contraseña"></ion-input>
+          </ion-item>
+          <ion-item> 
+            <ion-input [(ngModel)]="confirmarClave" label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input [(ngModel)]="telefono" label="Telefono" label-placement="floating" placeholder="+569-88888888"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="email" [(ngModel)]="mail" label="Email" labelPlacement="floating" helperText="Imgrese su Email"
             errorText="Invalid email" ngModel email></ion-input>
+           </ion-item>
+          
+         
+          
 
             
           
         </ion-list>
       </ion-list>
       <div class="registro">
-        <ion-button class="color" expand="block">registarse</ion-button> <ion-button class="color" expand="block">limpiar</ion-button>
+        <ion-button class="color" (click)="registro()" expand="block">registarse</ion-button> <ion-button class="color" expand="block">limpiar</ion-button>
       </div>
     </ion-card-content>
 
