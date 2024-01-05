@@ -8,12 +8,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ERROR JAJA</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="bajar">
+    <ion-text class="ion-text-center" >
+      <h2 >Ingresa tu email para restablecer contraseña</h2>
+    </ion-text>
+   
+    <ion-item>
+      <ion-label position="floating">Ingresar email</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+    </ion-item>
+    <div *ngIf="emailError" class="error-message">
+      {{ emailError }}
+    </div>
 
-  <app-componente1></app-componente1>
+    <ion-button fill="clear" expand="full" class="btn" (click)="correo()" >Enviar</ion-button>
+  </ion-card>
   
 </ion-content>
