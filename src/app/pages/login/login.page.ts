@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
         state?.['usuarioEnviado']; 
 
       }
-    })
+    }) 
 
 
    }
