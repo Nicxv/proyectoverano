@@ -8,6 +8,7 @@ import { Pagina2PageRoutingModule } from './pagina2-routing.module';
 
 import { Pagina2Page } from './pagina2.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,6 @@ import { Pagina2Page } from './pagina2.page';
     IonicModule,
     Pagina2PageRoutingModule
   ],
-  declarations: [Pagina2Page]
+  declarations: [Pagina2Page, ]
 })
 export class Pagina2PageModule {}

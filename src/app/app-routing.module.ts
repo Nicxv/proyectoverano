@@ -24,18 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/samsung/samsung.module').then( m => m.SamsungPageModule)
   },
   {
-    path: 'samsung1',
-    loadChildren: () => import('./pages/samsung1/samsung1.module').then( m => m.Samsung1PageModule)
-  },
-  {
-    path: 'samsung2',
-    loadChildren: () => import('./pages/samsung2/samsung2.module').then( m => m.Samsung2PageModule)
-  },
-  {
-    path: 'samsung3',
-    loadChildren: () => import('./pages/samsung3/samsung3.module').then( m => m.Samsung3PageModule)
-  },
-  {
     path: 'xiaomi',
     loadChildren: () => import('./pages/xiaomi/xiaomi.module').then( m => m.XiaomiPageModule)
   },

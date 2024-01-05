@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>pagina1</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -23,9 +26,21 @@
     <div class="divbtn">
       <ion-button [routerLink]="['/pagina4']" size="small" expand="block">ir a login</ion-button>
       <ion-button (click)="irpagina2()" size="small" expand="block">ir a pag2</ion-button>
-      <ion-button (click)="login()" size="small" expand="block">logear</ion-button>
-    </div>
+
+      <ion-button (click)="login()" size="small" expand="block" *ngIf="usuario === 'Admin'">logear</ion-button>
+
+    </div> 
 
 </ion-list>
+
+<p>Lista de Personas</p>
+<ion-item *ngFor="let x of listaPersonas">
+  <ion-label>Nombre: {{ x.nombre | uppercase }}</ion-label>
+  <ion-label>Edad: {{ x.edad }}</ion-label>
+</ion-item>
+
+
+
+<app-componente1 [apellido]="primerNombre" apellido2="Rosales"></app-componente1>
 
 </ion-content>
