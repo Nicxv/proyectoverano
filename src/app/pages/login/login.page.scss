@@ -7,12 +7,19 @@ ion-button{
     --padding-bottom: 12px;
 }
 ion-header ion-toolbar {
-    --background: black; 
+    --background: #322E2E ; 
     --color: white;
   }
 
 .divToolbar{
     display: inline-flex;
+    
 }  
+
+.logo{
+    border-radius: 50%;
+    max-width: 50px;
+    
+}
 
   // color #322E2E
