@@ -1,7 +1,11 @@
+ion-header ion-toolbar {
+  --background: #F43435;
+  --color:white; 
+}
 
 
 .white-text {
-  color: rgb(0, 0, 0);
+  color: rgb(14, 14, 14);
 }
 .btn{
   color: white;
@@ -32,7 +36,8 @@
   border-radius: 8px;
 }
 .logito{
-  border-radius: 50%;
+  border-radius: 120%;
   width: 50px;
+  
 }
 
