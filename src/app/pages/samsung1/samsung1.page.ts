@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Samsung1Page implements OnInit {
 
+  showFullContent: boolean = false;
+
+  toggleContent() {
+    this.showFullContent = !this.showFullContent;
+  }
+
   constructor() { }
 
   ngOnInit() {

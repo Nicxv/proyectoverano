@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./samsung3.page.scss'],
 })
 export class Samsung3Page implements OnInit {
+  showFullContent: boolean = false;
 
+  toggleContent() {
+    this.showFullContent = !this.showFullContent;
+  }
   constructor() { }
 
   ngOnInit() {

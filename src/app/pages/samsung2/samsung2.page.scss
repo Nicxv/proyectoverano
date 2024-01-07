@@ -1,86 +1,142 @@
-.botones-achicados {
-    font-size: 12px;
-    padding: 6px 12px;
-    
-  }
-  
-  .imagen-achicada {
-    width: 210px; 
-    height: auto;
-  }
-  
-  .imagen-achicada2 {
-    width: 170px; 
-    height: auto;
-  }
-  
-  .botones-achicados {
-    font-size: 12px;
-    padding: 6px 12px;
-    
-  
-    
-  }
-  .title {
-    color: rgb(255, 255, 255); 
-  }
-  
-  $colors: (
-  verde-personalizado: hwb(120 16% 45% / 0.918) 
-  );
-  
-  .item{
-  padding-inline: 100px;
-  }  
-  .product-box {
+.bajar{
+  bottom: -60px;
+}
+.title {
+  color: rgb(255, 255, 255); 
+}
+
+$colors: (
+verde-personalizado: hwb(120 16% 45% / 0.918) 
+);
+
+.item{
+padding-inline: 100px;
+}  
+.product-box {
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: rgb(255, 255, 255);
+box-shadow: 0 0 15px 0   rgb(5, 230, 72);
+border-radius: 40px;
+padding: 40px;
+margin: 20px;
+}
+.button-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 15px 0   rgb(5, 230, 72);
-  border-radius: 40px;
-  padding: 40px;
-  margin: 20px;
-  }
-  .product-info {
-  text-align: center;
-  }
+  margin-top: 20px;
+
+}
+    .read-more-button {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 100%; /* Ajusta el ancho máximo según tus preferencias */
+      margin: 0 auto;
+      display: block;
+      background-color: #000000;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 13px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
   
-  
-  .btn{
+      &:hover {
+        background-color: #000000;
+      }
+    }
+
+.btn{
   color: white;
   background-color: #F43435;
-  border-radius: 10px ;
+  border-radius: 50px ;
   margin-bottom: 30px;
-  
-  
-  }
-      .read-more-button {
-        margin-top: 10px;
-        width: 100%;
-        max-width: 350px; /* Ajusta el ancho máximo según tus preferencias */
-        margin: 0 auto;
-        display: block;
-        background-color: #322E2E;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 15px 20px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
     
-        &:hover {
-          background-color: #322E2E;
-        }
-      }
+}
+
+.descuento{
+  display: inline-block;
+  background-color: #F43435;
+  font-size: 17px;
+  color: rgb(255, 255, 255);
+  padding-inline: 15px;
+  border-radius: 5px;
+
+}
+    
+
+    ion-radio{
+      margin: 20px;
+    
+    }
+
+    ion-radio::part(container) {
+      width: 25px;
+      height: 25px;
+    
+      border-radius: 100%;
+      border: 2px solid #ddd;
+    }
+    
+    .radioButton1::part(mark) {
+      background: #F43435;
+      transition: none;
+      transform: none;
+      border-radius: 100%;
+      
+    }
+    .radioButton2::part(mark) {
+      background: #000000;
+      transition: none;
+      transform: none;
+      border-radius: 100%;
+      
+    }
+    .radioButton3::part(mark) {
+      background: blue;
+      transition: none;
+      transform: none;
+      border-radius: 100%;
+      
+    }
+    
+    ion-radio.radio-checked::part() {
+      width: 6px;
+      height: 10px;
+      
+    
+      border-width: 0px 2px 2px 0px;
+      border-style: solid;
+      border-color: #fff;
+    
+      transform: rotate(45deg);
+    }
+    .radioButton1.radio-checked::part(container){
+      background: #F43435;
+
+    }
+    .radioButton2.radio-checked::part(container){
+      background: #000000;
+
+    }
+    .radioButton3.radio-checked::part(container){
+      background: blue;
+
+    }
+
+  
+    
+  
 .logito{
         border-radius: 120%;
         width: 50px;
         
       }
-      
+    
 ion-header ion-toolbar {
-  --background: #F43435;
+        --background: #F43435;
         --color:white; 
       }
-        
+    

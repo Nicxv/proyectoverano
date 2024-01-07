@@ -1,23 +1,49 @@
-.custom-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(250, 250, 250);
-    color: rgb(255, 255, 255); 
-    padding: 10px 20px; 
-    text-decoration: none; 
-    border: none; 
-    border-radius: 5px; 
-  }
+/* tu-componente.page.scss */
 
-  .logito{
-    border-radius: 120%;
-    width: 50px;
-    
-  }
-
-  ion-header ion-toolbar {
-    --background: #F43435;
-    --color:white; 
-  }
+.logito{
+  border-radius: 120%;
+  width: 50px;
   
+}
+
+ion-header ion-toolbar {
+  --background: #F43435;
+  --color:white; 
+}
+
+.btn{
+  color: white;
+  background-color: #F43435;
+  border-radius: 50px ;
+  margin-bottom: 30px;
+
+}
+.divDescuento{
+  text-align: end;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.descuento{
+  display: inline-block;
+  background-color: #F43435;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+
+.titulo{
+
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+ font-family: 'Times New Roman', Times, serif;
+ font-style: initial;
+  
+  font-size: 30px;
+}
+
+.bajar{
+  margin-bottom: 30px;
+}
