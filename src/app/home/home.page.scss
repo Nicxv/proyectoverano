@@ -3,7 +3,16 @@ ion-header ion-toolbar {
   --color:white; 
 }
 
+.titulo{
 
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+ font-family: 'Times New Roman', Times, serif;
+ font-style: initial;
+  
+  font-size: 30px;
+}
 .white-text {
   color: rgb(14, 14, 14);
 }
