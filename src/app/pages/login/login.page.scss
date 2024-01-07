@@ -7,21 +7,33 @@ ion-button{
     --padding-bottom: 12px;
 }
 ion-header ion-toolbar {
-    --background: #000000 ; 
+    --background: #322E2E; 
     --color: white;
   }
 
 .divToolbar{
-    display: inline-flex;
+    text-align: end;
+    padding-right: 10px;
     
 }  
 
 .logo{
-    border-radius: 50%;
+    border-radius: 20px 20px 20px 20px;
     max-width: 40px;
-    width: 200px;
     
     
+    
+}
+
+.titulo{
+
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+   font-family: 'Times New Roman', Times, serif;
+   font-style: initial;
+    
+    font-size: 30px;
 }
 
   // color #322E2E

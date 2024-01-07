@@ -4,21 +4,17 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    
-    
-
-
     <div class="divToolbar"><img class="logo" src="assets/icon/logo2.0.png" alt="logo"></div>
     
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <img alt="imagen login" src="https://www.elindependiente.com/wp-content/uploads/2018/12/samsung-656x368.jpg" />
+  <ion-card >
+    <div style="text-align: center;"><img width="250px" src="assets/icon/logoPerfil.png" alt="logoPerfil"></div>
+   <!-- <img alt="imagen login" src="https://www.elindependiente.com/wp-content/uploads/2018/12/samsung-656x368.jpg"/>  -->
     <ion-card-header style="text-align: center;">
-      <ion-card-title>Inicio de sesion</ion-card-title>
+      <ion-card-title class="titulo">Iniciar Sesion</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
@@ -28,7 +24,7 @@
         <ion-input [(ngModel)]="clave" label="Password:" type="password" labelPlacement="floating" placeholder="**********"></ion-input>
         </ion-item>
         <br>
-        <button mat-button color="disabled" shape="block"  size="small" [routerLink]="['/pagina3']">¿Olvidaste tu contraseña?</button>
+        <button mat-button color="disabled" shape="block"  size="small" [routerLink]="['/cambiocontra']">¿Olvidaste tu contraseña?</button>
      
 
         <div class="divbtn">
@@ -41,6 +37,6 @@
     </ion-card-content>
   </ion-card>
 
-  <app-componente1></app-componente1>
+  <div style="text-align: center; color: rgb(150, 150, 150);"><app-componente1></app-componente1></div>
   
 </ion-content>
