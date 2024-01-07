@@ -22,17 +22,8 @@
   .product-info {
   text-align: center;
   }
-  ion-header ion-toolbar {
-  --background: #322E2E; 
-  }
-  ion-header ion-toolbar:nth-child(2) {
-  
-  --background: #322E2E; 
-  }
-  ion-header, ion-toolbar, ion-content {
-  --background: #ffffff; 
-  
-  }
+ 
+
   
   .button-container {
     display: flex;
@@ -140,4 +131,14 @@
   
     
   
-  
+.logito{
+        border-radius: 120%;
+        width: 50px;
+        
+      }
+    
+ion-header ion-toolbar {
+        --background: #F43435;
+        --color:white; 
+      }
+    
