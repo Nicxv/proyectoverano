@@ -83,13 +83,26 @@ const routes: Routes = [
     path: 'samsung3',
     loadChildren: () => import('./pages/samsung3/samsung3.module').then( m => m.Samsung3PageModule)
   },
+  {
+    path: 'listacel',
+    loadChildren: () => import('./pages/listacel/listacel.module').then( m => m.ListacelPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 
-
+  /* La de abajo es la pagina de error, siempre debe ir al ultimo,
+   cuando creen una pagina, deben mover la recien creada arriba de la pag de error*/
   {
 
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
   },
+ 
+
+
+
   
 
 ];

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div> <img src="assets/icon/logo2.png" class="logito"></div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-header><div style="text-align: center;"><img width="250px"
+       src="assets/icon/logoPerfil.png" alt="logoPerfil"></div></ion-card-header>
+    <ion-card-content>
+      <div style="text-align: center;"><h1>Mi perfil</h1>
+      </div>
+      <p>Nombre: {{ nombreRecibido }}</p>
+      <p>Usuario: {{ usuarioRecibido}} </p>
+      <p>Email: {{mailRecibido}} </p>
+      <p>Telefono: {{telefonoRecibido}} </p>
+
+      <div class="divbtn"><ion-button size="small" expand="block">
+        Registrarse
+      </ion-button>
+      <ion-button size="small" expand="block">
+        Modificar
+      </ion-button></div>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

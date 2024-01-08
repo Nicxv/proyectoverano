@@ -42,3 +42,11 @@ ion-content{
     --background: #F43435;
     --color:white; 
   }
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-left: 15px;
+    margin-top: 2px; /* Ajusta este valor según tu diseño */
+    text-align: left; /* Opcional: ajusta la alineación del texto según tu diseño */
+ }  

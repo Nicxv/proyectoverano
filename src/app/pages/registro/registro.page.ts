@@ -10,15 +10,16 @@ import { AlertController, NavController, ToastController } from '@ionic/angular'
 export class RegistroPage implements OnInit {
 
   nombre: string="";
-  edad: string = "";
   usuario: string="";
   clave: string ="";
   confirmarClave: string ="";
   telefono: string = "";
   mail:string ="";
+  fechaNacimiento: string="";
   error:string ="";
   usuarioError: string="";
   claveError: string="";
+
 
 
 
@@ -27,8 +28,10 @@ export class RegistroPage implements OnInit {
 
   registro(){
 
-    if (!this.usuario || !this.clave ) {
+    if (!this.usuario || !this.clave || !this.confirmarClave || !this.nombre ||!this.telefono || !this.mail || !this.fechaNacimiento ) {
       this.error = 'Todos los campos son obligatorios.';
+    } else if (this.clave !== this.confirmarClave) { 
+      this.error = 'Las claves no coinciden.';
     } else {
       // Realizar el proceso de registro aquí 
       this.error = ''; // Limpiar el mensaje de error
@@ -37,10 +40,15 @@ export class RegistroPage implements OnInit {
 
     if (!this.usuarioError && !this.claveError && !this.error) {
       // Si no hay errores en ningún campo, redirigir a otra página
+      this.error = 'Todos los campos son obligatorios.';
       let navigationExtras: NavigationExtras = {
         state: {
+          nombreEnviado: this.nombre,
           usuarioEnviado: this.usuario,
-          claveEnviado: this.clave
+          claveEnviado: this.clave,
+          telefonoEnviado: this.telefono,
+          mailEnviado: this.mail,
+          fechaEnviado: this.fechaNacimiento
         }
       }
       this.router.navigate(['/login'], navigationExtras);

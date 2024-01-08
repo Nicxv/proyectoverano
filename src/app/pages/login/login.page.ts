@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
         this,this.claveRecibida = this.router.getCurrentNavigation()?.extras?.
         state?.['claveEnviado'];
         this.usuarioRecibido = this.router.getCurrentNavigation()?.extras?.
-        state?.['usuarioEnviado']; 
+        state?.['usuarioEnviado'];  
 
       }
     }) 
@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
    login(){
     if (this.usuario == this.usuarioRecibido && this.clave == this.claveRecibida){
       this.presentAlert("Bienvenido ");
-      this.router.navigate(['/iphone']);
+      this.router.navigate(['/home']);
     }else{
       this.presentAlert("Usuario y/o clave incorrecta");
     }
@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
   loginAdmin(){
     if(this.usuario == this.userCorrecto && this.clave == this.claveCorrecta){
       this.presentAlert("Bienvenido Administrador");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/pantallaadmin']);
     }else{
       this.presentAlert("Usuario y/o Clave incorrecta");
     }
