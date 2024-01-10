@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>agregar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h2 class="ion-text-center">Agregar Usuario </h2>
+
+  <ion-item>
+    <ion-input label="Correo" labelPlacement="floating" placeholder="EJEMPLO@FWQFQF.CL" type="email"></ion-input>
+  </ion-item>
+
+
+<ion-item>
+  <ion-input label="CONTRASEÑA" labelPlacement="floating" placeholder="ingres su contraseña" type="password"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-select label="rol" label-placement="floating">
+    <ion-select-option value="1">Usuario</ion-select-option>
+    <ion-select-option value="2">Administrador</ion-select-option>
+    
+   
+  </ion-select>
+</ion-item>
+
+<ion-item>
+
+  <ion-button color="tertiary">atras</ion-button>
+<ion-button color="success">agregar</ion-button>
+</ion-item>
+</ion-content>
