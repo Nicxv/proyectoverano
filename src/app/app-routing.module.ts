@@ -113,6 +113,11 @@ const routes: Routes = [
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
   },
+  {
+    path: 'cambiocontra',
+    loadChildren: () => import('./pages/cambiocontra/cambiocontra.module').then( m => m.CambiocontraPageModule)
+  },
+
 
 
 

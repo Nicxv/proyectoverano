@@ -1,0 +1,34 @@
+.btn{
+    color: white;
+    background-color: #F43435;
+    border-radius: 5px;
+    margin-top: 40px;
+  
+  }
+
+.bajar{
+    margin-top: -100px;
+}
+
+.color{
+  background: #F43435;
+}
+
+ion-button{
+  --background: #F43435;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+ion-header ion-toolbar {
+  --background: #F43435 ; 
+  --color: white;
+}
+
+.logo{
+  border-radius: 50%;
+  max-width: 40px;
+  width: 200px;
+  
+  
+}
+

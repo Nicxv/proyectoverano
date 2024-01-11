@@ -1,39 +1,9 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
-    
-    
-
-
-    <div class="divToolbar"><img class="logo" src="assets/icon/logo2.0.png" alt="logo"></div>
-    
-
-  </ion-toolbar>
+  
 </ion-header>
 
 
 <ion-content  [fullscreen]="true">
   
- 
-  <ion-card class="bajar">
-    <img width="480px" height="270px" src="assets/icon/restablecercontra.png" >
-    <ion-text class="ion-text-center" >
-      <h1 >Restablecer Contraseña</h1>
-      <h5>Introduzca su Email y te enviaremos unas instrucciones para restablecer contraseña</h5>
-    </ion-text>
-    
-    <ion-item>
-      <ion-label position="floating">Ingresar Email</ion-label>
-      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
-    </ion-item>
-    <div *ngIf="emailError" class="error-message">
-      {{ emailError }}
-    </div>
-
-    <ion-button fill="clear" expand="full" class="btn" (click)="correo()" >Enviar</ion-button>
-  </ion-card>
   
 </ion-content>
