@@ -5,29 +5,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h2 class="ion-text-center">modificar Usuario </h2>
+  <h2 class="ion-text-center">Modificar Usuario</h2>
+
 
   <ion-item>
-    <ion-input label="Correo" labelPlacement="floating" placeholder="EJEMPLO@FWQFQF.CL" type="email"></ion-input>
+    <ion-input label="Correo: " labelPlacement="floating" placeholder="ejemplo@dominio.cl" type="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Contraseña: " labelPlacement="floating" placeholder="Ingrese su contraseña"
+      type="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select label="Rol: " label-placement="floating">
+      <ion-select-option value="1">Usuario</ion-select-option>
+      <ion-select-option value="2">Administrador</ion-select-option>
+    </ion-select>
   </ion-item>
 
-
-<ion-item>
-  <ion-input label="CONTRASEÑA" labelPlacement="floating" placeholder="ingres su contraseña" type="password"></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-select label="rol" label-placement="floating">
-    <ion-select-option value="1">Usuario</ion-select-option>
-    <ion-select-option value="2">Administrador</ion-select-option>
-    
-   
-  </ion-select>
-</ion-item>
-
-<ion-item>
-
-  <ion-button color="tertiary">atras</ion-button>
-<ion-button color="success">modificar</ion-button>
-</ion-item>
+  <ion-item>
+    <ion-button color="tertiary">Atras</ion-button>
+    <ion-button color="success">Modificar</ion-button>
+  </ion-item>
 </ion-content>
