@@ -91,7 +91,7 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-
+  
   /* La de abajo es la pagina de error, siempre debe ir al ultimo,
    cuando creen una pagina, deben mover la recien creada arriba de la pag de error*/
  
