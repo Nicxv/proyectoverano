@@ -5,11 +5,11 @@ describe('Xiaomi2Page', () => {
   let component: Xiaomi2Page;
   let fixture: ComponentFixture<Xiaomi2Page>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(Xiaomi2Page);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

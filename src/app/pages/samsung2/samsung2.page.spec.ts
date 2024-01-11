@@ -5,11 +5,11 @@ describe('Samsung2Page', () => {
   let component: Samsung2Page;
   let fixture: ComponentFixture<Samsung2Page>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(Samsung2Page);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
