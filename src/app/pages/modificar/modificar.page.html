@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Modificar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <h2 class="ion-text-center">Modificar Usuario</h2>
+
+
+  <ion-item>
+    <ion-input [(ngModel)]="usuarioRecibido.correo" label="Correo: " labelPlacement="floating" placeholder="ejemplo@dominio.cl" type="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input  [(ngModel)]="usuarioRecibido.clave" label="Contraseña: " labelPlacement="floating" placeholder="Ingrese su contraseña"
+      type="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select  [(ngModel)]="usuarioRecibido.fk_id_rol" label="Rol: " label-placement="floating">
+      <ion-select-option value="1">Cliente</ion-select-option>
+      <ion-select-option value="2">Administrador</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-button color="tertiary" [routerLink]="['/listar']">Atras</ion-button>
+    <ion-button color="success" (click)="modificar()">Modificar</ion-button>
+  </ion-item>
+  
+</ion-content>
