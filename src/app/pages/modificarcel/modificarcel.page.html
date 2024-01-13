@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Modificar Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h2 class="ion-text-center">Modificar Productos</h2>
+
+
+  <ion-item>
+    <ion-input [(ngModel)]="productoRecibido.nombrep" label="nombre: " labelPlacement="floating" placeholder="" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea [(ngModel)]="productoRecibido.descripcion" label="descripcion: " labelPlacement="floating" placeholder=""></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="productoRecibido.stock" label="stock: " labelPlacement="floating" placeholder="" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="productoRecibido.precio" label="precio: " labelPlacement="floating" placeholder="" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="tomarFoto()">Tomar foto</ion-button>
+  </ion-item>
+  <ion-item>
+    <img *ngIf="productoRecibido.foto" src="{{ productoRecibido.foto }}" alt="Sin foto" width="150px" height="150px">
+  </ion-item>
+
+  <ion-item>
+    <ion-select label="categoria: " label-placement="floating" [(ngModel)]="productoRecibido.fk_id_categoria">
+      <ion-select-option value="1">Iphone</ion-select-option>
+      <ion-select-option value="2">Samsung</ion-select-option>
+      <ion-select-option value="3">Xiaomi</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-button color="tertiary" [routerLink]="['/listacel']">Atras</ion-button>
+    <ion-button color="success" (click)="modificar()">Modificar</ion-button>
+  </ion-item>
+
+</ion-content>

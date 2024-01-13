@@ -4,32 +4,34 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <div> <img src="assets/icon/logo2.png" class="logito"></div>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <h2 class="ion-text-center">Celulares</h2>
+  <h2 class="ion-text-center">Productos</h2>
   <ion-list style="background: #323232;">
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let x of arregloProductos">
       <ion-item>
-        <ion-label>Marca: </ion-label>
-        <ion-label>Modelo: </ion-label>
-        <ion-label>Precio: </ion-label>
-        <ion-label>Stock: </ion-label>
-        <ion-label>foto: </ion-label>
+        <ion-label>categoria: {{ x.nombre}} </ion-label>
+        <ion-label>Nombre: {{ x.nombrep }}</ion-label>
+        <ion-label>descripcion:{{ x.descripcion }} </ion-label>
+        <ion-label>stock: {{ x.stock }}</ion-label>
+        <ion-label>precio: {{ x.precio }}</ion-label>
+        <img src="{{ x.foto }}" alt="" width="100px" height="100px">
       </ion-item>
   
       <ion-item-options>
-        <ion-item-option color="success">Modificar</ion-item-option>
-        <ion-item-option color="danger">Eliminar</ion-item-option>
+        <ion-item-option (click)="modificarP(x)" color="success">Modificar</ion-item-option>
+        <ion-item-option (click)="eliminarP(x)" color="danger">Eliminar</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/']">
+    <ion-fab-button [routerLink]="['/agregarcel']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

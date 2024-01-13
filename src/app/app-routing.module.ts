@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'listacel',
     pathMatch: 'full'
   },
   {
@@ -110,6 +110,14 @@ const routes: Routes = [
   {
     path: 'camara',
     loadChildren: () => import('./pages/camara/camara.module').then( m => m.CamaraPageModule)
+  }, 
+  {
+    path: 'agregarcel',
+    loadChildren: () => import('./pages/agregarcel/agregarcel.module').then( m => m.AgregarcelPageModule)
+  },
+  {
+    path: 'modificarcel',
+    loadChildren: () => import('./pages/modificarcel/modificarcel.module').then( m => m.ModificarcelPageModule)
   },
   {
 /* La de abajo es la pagina de error, siempre debe ir al ultimo,
@@ -117,6 +125,8 @@ const routes: Routes = [
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
   },
+ 
+
   
 
 ];

@@ -3,6 +3,7 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { AlertController, Platform } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuarios } from './usuarios';
+import { Productos } from './productos';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,22 @@ export class BdregistroService {
 
   //variables para las tablas de nuestra base de datos
   tablaRol: string = "CREATE TABLE IF NOT EXISTS rol(id_rol INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
-
   tablaUsuario: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, correo VARCHAR(100) NOT NULL, clave VARCHAR(16) NOT NULL, fk_id_rol INTEGER, FOREIGN KEY(fk_id_rol) REFERENCES rol(id_rol));";
+
+  tablaCategoria: string = "CREATE TABLE IF NOT EXISTS categoria(id_categoria INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
+  tablaProducto: string = "CREATE TABLE IF NOT EXISTS producto(id_producto INTEGER PRIMARY KEY autoincrement, nombrep VARCHAR(30) NOT NULL, descripcion VARCHAR(100) NOT NULL, stock INTEGER NOT NULL, precio INTEGER NOT NULL, foto BLOB NOT NULL , fk_id_categoria INTEGER, FOREIGN KEY(fk_id_categoria) REFERENCES categoria(id_categoria));";
+
 
   //variables para insert por defecto
   insertRol: string = "INSERT or IGNORE INTO rol(id_rol,nombre) VALUES (1,'Cliente');";
   insertRol2: string = "INSERT or IGNORE INTO rol(id_rol,nombre) VALUES (2,'Administrador');";
+  insertCategoria: string = "INSERT or IGNORE INTO categoria(id_categoria,nombre) VALUES (1,'Iphone');";
+  insertCategoria2: string = "INSERT or IGNORE INTO categoria(id_categoria,nombre) VALUES (2,'Samsung');";
+  insertCategoria3: string = "INSERT or IGNORE INTO categoria(id_categoria,nombre) VALUES (3,'Xiaomi');";
 
   //variables para los observables de las consultas a las tablas
   listaUsuarios = new BehaviorSubject([]);
+  listaProductos = new BehaviorSubject([]);
 
 
   //observable para el estatus de la base de datos
@@ -39,6 +47,10 @@ export class BdregistroService {
 
   fetchUsuarios(): Observable<Usuarios[]>{
     return this.listaUsuarios.asObservable();
+  }
+
+  fetchProductos(): Observable<Productos[]>{
+    return this.listaProductos.asObservable();
   }
 
   async presentAlert(msj: string) {
@@ -69,9 +81,6 @@ export class BdregistroService {
         this.presentAlert("Error en crearDB: " + JSON.stringify(e));
       })
 
-
-
-
     }).catch(e => {
       //mostrar el error del ready
       this.presentAlert("Error en platform: " + JSON.stringify(e));
@@ -88,16 +97,31 @@ export class BdregistroService {
       //this.presentAlert("1");
       await this.conexionBD.executeSql(this.tablaUsuario,[]);
       //this.presentAlert("2");
+      await this.conexionBD.executeSql(this.tablaCategoria,[]);
+      //this.presentAlert("3");
+      await this.conexionBD.executeSql(this.tablaProducto,[]);
+      //this.presentAlert("4");
+
       //ejecuto los insert en las tablas
       await this.conexionBD.executeSql(this.insertRol,[]);
-      //this.presentAlert("3");
-      await this.conexionBD.executeSql(this.insertRol2,[]);
-      //this.presentAlert("4");
-      this.buscarUsuarios();
       //this.presentAlert("5");
+      await this.conexionBD.executeSql(this.insertRol2,[]);
+      //this.presentAlert("6");
+      await this.conexionBD.executeSql(this.insertCategoria,[]);
+      //this.presentAlert("7");
+      await this.conexionBD.executeSql(this.insertCategoria2,[]);
+      //this.presentAlert("8");
+      await this.conexionBD.executeSql(this.insertCategoria3,[]);
+      //this.presentAlert("9");   
+
+      this.buscarUsuarios();
+      //this.presentAlert("10");
+
+      this.buscarProductos();
+      //this.presentAlert("11");
       //actualizo el observable de la base de datos
       this.isDBReady.next(true);
-      //this.presentAlert("6");
+      //this.presentAlert("12");
     }
     catch (e) {
       this.presentAlert("Error en tablas: " + JSON.stringify(e));
@@ -130,7 +154,32 @@ export class BdregistroService {
       this.listaUsuarios.next(items as any);
 
     }).catch(e=>{
-      this.presentAlert("Error en select join: " + JSON.stringify(e));
+      this.presentAlert("Error en select join de la tabla usuario: " + JSON.stringify(e));
+    })
+  }
+
+  buscarProductos(){
+    return this.conexionBD.executeSql('SELECT * FROM producto INNER JOIN categoria ON producto.fk_id_categoria = categoria.id_categoria',[]).then(res=>{
+      let items: Productos[] = [];
+      if(res.rows.length > 0){
+        for(var i = 0; i < res.rows.length; i++){
+          items.push({
+            id_producto: res.rows.item(i).id_producto,
+            nombrep: res.rows.item(i).nombrep,
+            descripcion: res.rows.item(i).descripcion,
+            stock: res.rows.item(i).stock,
+            precio: res.rows.item(i).precio,
+            foto: res.rows.item(i).foto,
+            fk_id_categoria: res.rows.item(i).fk_id_categoria,
+            id_categoria: res.rows.item(i).id_categoria,
+            nombre: res.rows.item(i).nombre
+          })
+        }
+      }
+      this.listaProductos.next(items as any);
+
+    }).catch(e=>{
+      this.presentAlert("Error en select join de la tabla producto: " + JSON.stringify(e));
     })
   }
 
@@ -139,11 +188,20 @@ export class BdregistroService {
     //ejecutamos el insert
     return this.conexionBD.executeSql('INSERT INTO usuario(correo,clave,fk_id_rol) VALUES (?,?,?)',[correo,clave,fk_id_rol]).then(res=>{
       this.buscarUsuarios();
-      this.presentAlert("Usuario Registrado");
+      this.presentAlert("Usuario Registrado!");
     }).catch(e=>{
       this.presentAlert("Error en insert usuario: " + JSON.stringify(e));
     })
 
+  }
+
+  insertarProducto(nombrep:string,descripcion:string,stock:number,precio:number,foto:any,fk_id_categoria:number){
+    return this.conexionBD.executeSql('INSERT INTO producto(nombrep,descripcion,stock,precio,foto,fk_id_categoria) VALUES (?,?,?,?,?,?)',[nombrep,descripcion,stock,precio,foto,fk_id_categoria]).then(res=>{
+      this.buscarProductos();
+      this.presentAlert("Producto Agregado!");
+    }).catch(e=>{
+      this.presentAlert("Error en insert Producto: " + JSON.stringify(e));
+    })
   }
 
   eliminarUsuario(id_usuario:number){
@@ -156,13 +214,32 @@ export class BdregistroService {
     })
   }
 
+  eliminarProducto(id_producto:number){
+    return this.conexionBD.executeSql('DELETE FROM producto WHERE id_producto = ?',[id_producto]).then(res=>{
+      this.buscarProductos();
+      this.presentAlert("Producto Eliminado!");
+    }).catch(e=>{
+      this.presentAlert("Error en delete producto: " + JSON.stringify(e));
+    })
+  }
+
   modificarUsuario(id_usuario:number,correo:string,clave:string,fk_id_rol:number){
     //ejecutar el update
     return this.conexionBD.executeSql('UPDATE usuario SET correo = ?, clave = ?, fk_id_rol = ? WHERE id_usuario = ?',[correo,clave,fk_id_rol,id_usuario]).then(res=>{
       this.buscarUsuarios();
       this.presentAlert("Usuario Modificado");
     }).catch(e=>{
-      this.presentAlert("Error en update usuario: " + JSON.stringify(e));
+      this.presentAlert("Error en modificar usuario: " + JSON.stringify(e));
     })
+  }
+
+  modificarProducto(id_producto:number,nombrep:string,descripcion:string,stock:number,precio:number,foto:any,fk_id_categoria:number){
+    return this.conexionBD.executeSql('UPDATE producto SET nombrep = ?, descripcion = ?, stock = ?, precio = ?, foto = ?, fk_id_categoria = ? WHERE id_producto',[nombrep,descripcion,stock,precio,foto,fk_id_categoria,id_producto]).then(res=>{
+      this.buscarProductos();
+      this.presentAlert("Producto Modificado!");
+    }).catch(e=>{
+      this.presentAlert("Error en modificar producto: " + JSON.stringify(e));
+    })
+
   }
 }
