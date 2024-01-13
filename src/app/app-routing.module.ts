@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'listacel',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
