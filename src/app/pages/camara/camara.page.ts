@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, GalleryImageOptions, GalleryPhotos } from '@capacitor/camera';
 
 @Component({
   selector: 'app-camara',
@@ -27,5 +27,6 @@ export class CamaraPage implements OnInit {
   
     
   };
-  
+
+
 }

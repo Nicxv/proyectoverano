@@ -5,11 +5,12 @@ describe('ModificarcelPage', () => {
   let component: ModificarcelPage;
   let fixture: ComponentFixture<ModificarcelPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
+    await TestBed.configureTestingModule
     fixture = TestBed.createComponent(ModificarcelPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
