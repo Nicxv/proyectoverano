@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>apirest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button (click)="getUsuarios()">Consultar Usuarios</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let x of usuarios">
+      <ion-label>Nombre: {{ x.name }}</ion-label>
+      <ion-label>NickName: {{ x.username }}</ion-label>
+      <ion-label>Correo: {{ x.email }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

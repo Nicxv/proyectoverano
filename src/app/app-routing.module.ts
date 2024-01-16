@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'apirest',
     pathMatch: 'full'
   },
   {
@@ -119,13 +119,18 @@ const routes: Routes = [
     path: 'modificarcel',
     loadChildren: () => import('./pages/modificarcel/modificarcel.module').then( m => m.ModificarcelPageModule)
   },
+ 
+  {
+    path: 'apirest',
+    loadChildren: () => import('./pages/apirest/apirest.module').then( m => m.ApirestPageModule)
+  },
+
   {
 /* La de abajo es la pagina de error, siempre debe ir al ultimo,
    cuando creen una pagina, deben mover la recien creada arriba de la pag de error*/
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
   },
- 
 
   
 
