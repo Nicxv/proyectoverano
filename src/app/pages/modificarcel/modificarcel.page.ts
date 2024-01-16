@@ -25,7 +25,7 @@ export class ModificarcelPage implements OnInit {
     allowEditing: false,
     resultType: CameraResultType.DataUrl
     });
-    this.productoRecibido = imagen.dataUrl;
+    this.productoRecibido.foto = imagen.dataUrl;
   };
 
    modificar(){

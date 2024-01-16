@@ -234,7 +234,7 @@ export class BdregistroService {
   }
 
   modificarProducto(id_producto:number,nombrep:string,descripcion:string,stock:number,precio:number,foto:any,fk_id_categoria:number){
-    return this.conexionBD.executeSql('UPDATE producto SET nombrep = ?, descripcion = ?, stock = ?, precio = ?, foto = ?, fk_id_categoria = ? WHERE id_producto',[nombrep,descripcion,stock,precio,foto,fk_id_categoria,id_producto]).then(res=>{
+    return this.conexionBD.executeSql('UPDATE producto SET nombrep = ?, descripcion = ?, stock = ?, precio = ?, foto = ?, fk_id_categoria = ? WHERE id_producto = ?',[nombrep,descripcion,stock,precio,foto,fk_id_categoria,id_producto]).then(res=>{
       this.buscarProductos();
       this.presentAlert("Producto Modificado!");
     }).catch(e=>{

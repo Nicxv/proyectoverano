@@ -30,8 +30,7 @@ export class AgregarcelPage implements OnInit {
   insertarP(){
     this.bd.insertarProducto(this.nombreP,this.descripcionP,this.stockP,this.precioP,this.fotoP,this.idC);
     this.router.navigate(['/listacel'])
-  }
-
+  } 
 
   ngOnInit() {
   }
