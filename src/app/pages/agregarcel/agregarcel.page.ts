@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType, GalleryImageOptions, GalleryPhotos } from '@capacitor/camera';
 import { BdregistroService } from 'src/app/services/bdregistro.service';
 
 @Component({
@@ -26,6 +26,10 @@ export class AgregarcelPage implements OnInit {
     });
     this.fotoP = imagen.dataUrl;
   };
+
+  pickImages = async (options: GalleryImageOptions) => {
+    Promise <GalleryPhotos>
+ }
 
   insertarP(){
     this.bd.insertarProducto(this.nombreP,this.descripcionP,this.stockP,this.precioP,this.fotoP,this.idC);

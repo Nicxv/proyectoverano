@@ -7,5 +7,6 @@
 <ion-content [fullscreen]="true">
   <ion-button (click)="takePicture()">Tomar Foto</ion-button>
 
+
   <img *ngIf="imageSource" src="{{ imageSource }}" alt="Sin foto" width="250px" height="250px">
 </ion-content>
