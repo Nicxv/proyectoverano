@@ -4,6 +4,7 @@ import { AlertController, Platform } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuarios } from './usuarios';
 import { Productos } from './productos';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class BdregistroService {
 
   //variables para las tablas de nuestra base de datos
   tablaRol: string = "CREATE TABLE IF NOT EXISTS rol(id_rol INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
-  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, correo VARCHAR(100) NOT NULL, clave VARCHAR(16) NOT NULL, fk_id_rol INTEGER, FOREIGN KEY(fk_id_rol) REFERENCES rol(id_rol));";
+  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, correo VARCHAR(100) NOT NULL, clave VARCHAR(16) NOT NULL, nombre VARCHAR(50), apellido VARCHAR(50), telefono VARCHAR(12), foto blob, fk_id_rol INTEGER, FOREIGN KEY(fk_id_rol) REFERENCES rol(id_rol));";
 
   tablaCategoria: string = "CREATE TABLE IF NOT EXISTS categoria(id_categoria INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
   tablaProducto: string = "CREATE TABLE IF NOT EXISTS producto(id_producto INTEGER PRIMARY KEY autoincrement, nombrep VARCHAR(30) NOT NULL, descripcion VARCHAR(100) NOT NULL, stock INTEGER NOT NULL, precio INTEGER NOT NULL, foto BLOB NOT NULL , fk_id_categoria INTEGER, FOREIGN KEY(fk_id_categoria) REFERENCES categoria(id_categoria));";
@@ -36,7 +37,7 @@ export class BdregistroService {
   //observable para el estatus de la base de datos
   private isDBReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private sqlite: SQLite, private platform: Platform, private alertController: AlertController) {
+  constructor(private sqlite: SQLite, private platform: Platform, private alertController: AlertController, private router: Router) {
     this.crearBD();
   }
 
@@ -69,7 +70,7 @@ export class BdregistroService {
     this.platform.ready().then(() => {
       //crear la base de datos
       this.sqlite.create({
-        name: 'usuariostest.db',
+        name: 'usuariostest2.db',
         location: 'default'
       }).then((db: SQLiteObject) => {
         //guardar mi conexion a base de datos
@@ -114,7 +115,7 @@ export class BdregistroService {
       await this.conexionBD.executeSql(this.insertCategoria3,[]);
       //this.presentAlert("9");   
 
-      this.buscarUsuarios();
+      //this.buscarUsuarios();
       //this.presentAlert("10");
 
       this.buscarProductos();
@@ -126,6 +127,27 @@ export class BdregistroService {
     catch (e) {
       this.presentAlert("Error en tablas: " + JSON.stringify(e));
     }
+
+  }
+
+
+
+  IniciarSesion(correo: string, clave: string){
+    return this.conexionBD.executeSql('SELECT id_usuario FROM usuario WHERE correo = ? AND clave = ?', [correo,clave]).then(res=>{
+      if(res.rows.length > 0){
+        this.presentAlert("Bienvenido usuario");
+        let n: NavigationExtras ={
+          state: {
+            idEnviado: res.rows.item(0).id_usuario
+          }
+        }
+        this.router.navigate(['/home'], n);
+      }else{
+        this.presentAlert("Usuario y/o Contraseña incorrecto");
+      }
+    }).catch(e=>{
+      this.presentAlert("Error en inicio sesion: " + JSON.stringify(e));
+    })
 
   }
 
@@ -183,12 +205,13 @@ export class BdregistroService {
     })
   }
 
-
-  insertarUsuario(correo:string,clave:string,fk_id_rol:number){
+ 
+  insertarUsuario(nombre:string, apellido: string, correo:string, telefono:string, clave:string, foto: any,fk_id_rol:number){
     //ejecutamos el insert
-    return this.conexionBD.executeSql('INSERT INTO usuario(correo,clave,fk_id_rol) VALUES (?,?,?)',[correo,clave,fk_id_rol]).then(res=>{
-      this.buscarUsuarios();
+    return this.conexionBD.executeSql('INSERT INTO usuario(nombre, apellido, correo, telefono, clave, foto, fk_id_rol) VALUES (?,?,?,?,?,?,?)',[nombre, apellido, correo, telefono, clave, foto, fk_id_rol]).then(res=>{
+      //this.buscarUsuarios();
       this.presentAlert("Usuario Registrado!");
+      this.router.navigate(['/login']);
     }).catch(e=>{
       this.presentAlert("Error en insert usuario: " + JSON.stringify(e));
     })

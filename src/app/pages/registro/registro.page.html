@@ -25,10 +25,8 @@
             <ion-input type="text" [(ngModel)]="nombre" label="Nombre" label-placement="floating" placeholder="Ingrese su Nombre" required ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="date" [(ngModel)]="fechaNacimiento" label="Fecha de nacimiento" label-placement="floating" required></ion-input>
+            <ion-input type="text" [(ngModel)]="apellido" label="Apellido" label-placement="floating" required></ion-input>
           </ion-item>
-          <ion-item> 
-            <ion-input [(ngModel)]="usuario" label="Nombre usuario" label-placement="floating" placeholder="Ingrese nombre usuario" required></ion-input></ion-item>
           <ion-item>
             <ion-input type="number" [(ngModel)]="telefono" label="Telefono" label-placement="floating" placeholder="+569-88888888" required></ion-input>
           </ion-item>
@@ -41,6 +39,8 @@
           <ion-item> 
             <ion-input [(ngModel)]="confirmarClave" label="Confirmar contraseña" type="password" label-placement="floating" placeholder=" Confirmar contraseña" required></ion-input>
           </ion-item>
+          <ion-button (click)="takePicture()">Tomar Foto</ion-button>
+          <img *ngIf="fotoU" src="{{ fotoU }}" alt="Sin foto">
           <div *ngIf="error" class="error-message">
             {{ error }}
           </div>

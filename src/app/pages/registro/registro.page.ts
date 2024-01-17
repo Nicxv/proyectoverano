@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { BdregistroService } from 'src/app/services/bdregistro.service';
 
 @Component({
   selector: 'app-registro',
@@ -10,25 +12,37 @@ import { AlertController, NavController, ToastController } from '@ionic/angular'
 export class RegistroPage implements OnInit {
 
   nombre: string="";
-  usuario: string="";
+  apellido: string="";
   clave: string ="";
   confirmarClave: string ="";
   telefono: string = "";
   mail:string ="";
-  fechaNacimiento: string="";
   error:string ="";
   usuarioError: string="";
   claveError: string="";
+  fotoU: any;
+ 
 
 
 
+  constructor(private alertController: AlertController, private toastController: ToastController, private router: Router, private bd: BdregistroService) { }
 
 
-  constructor(private alertController: AlertController, private toastController: ToastController, private router: Router) { }
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl
+    });
+  
+    this.fotoU = image.dataUrl; 
+  
+    
+  };
 
   registro(){
 
-    if (!this.usuario || !this.clave || !this.confirmarClave || !this.nombre ||!this.telefono || !this.mail || !this.fechaNacimiento ) {
+    if (!this.nombre || !this.clave || !this.confirmarClave || !this.nombre ||!this.telefono || !this.mail || !this.apellido ) {
       this.error = 'Todos los campos son obligatorios.';
     } else if (this.clave !== this.confirmarClave) { 
       this.error = 'Las claves no coinciden.';
@@ -39,19 +53,8 @@ export class RegistroPage implements OnInit {
     }  
 
     if (!this.usuarioError && !this.claveError && !this.error) {
-      // Si no hay errores en ningún campo, redirigir a otra página
-      this.error = 'Todos los campos son obligatorios.';
-      let navigationExtras: NavigationExtras = {
-        state: {
-          nombreEnviado: this.nombre,
-          usuarioEnviado: this.usuario,
-          claveEnviado: this.clave,
-          telefonoEnviado: this.telefono,
-          mailEnviado: this.mail,
-          fechaEnviado: this.fechaNacimiento
-        }
-      }
-      this.router.navigate(['/login'], navigationExtras);
+      //llamamos a la BD para insrtar
+      this.bd.insertarUsuario(this.nombre, this.apellido, this.mail, this.telefono, this.clave, this.fotoU, 1);
     }
   }
 

@@ -18,7 +18,7 @@
     <ion-card-content>
       <ion-list>
         <ion-item>
-        <ion-input [(ngModel)]="usuario" label="Nombre de usuario:" type="text" labelPlacement="floating" placeholder="Enter text"></ion-input>
+        <ion-input [(ngModel)]="usuario" label="Correo:" type="email" labelPlacement="floating" placeholder="correo@dominio.cl"></ion-input>
         <ion-input [(ngModel)]="clave" label="Contraseña:" type="password" labelPlacement="floating" placeholder="**********"></ion-input>
         </ion-item>
         <br>
@@ -26,7 +26,7 @@
      
 
         <div class="divbtn">
-          <ion-button (click)="loginAdmin()" size="small" expand="block" *ngIf="usuario === 'Admin'">Entrar administrador</ion-button>
+          <!-- <ion-button (click)="loginAdmin()" size="small" expand="block" *ngIf="usuario === 'Admin'">Entrar administrador</ion-button> -->
           <ion-button (click)="login()" size="small" expand="block">Entrar</ion-button>
         </div>
  

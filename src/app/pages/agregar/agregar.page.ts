@@ -16,7 +16,7 @@ export class AgregarPage implements OnInit {
   constructor(public bd: BdregistroService, public router: Router) { }
 
   insertarU(){
-    this.bd.insertarUsuario(this.correoU,this.claveU,this.idU);
+   // this.bd.insertarUsuario(this.correoU,this.claveU,this.idU);
     this.router.navigate(['/listar']);
 
   }

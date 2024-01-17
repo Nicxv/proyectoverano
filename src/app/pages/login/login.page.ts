@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { BdregistroService } from 'src/app/services/bdregistro.service';
 
 @Component({
   selector: 'app-login',
@@ -18,40 +19,17 @@ export class LoginPage implements OnInit {
   usuarioRecibido: string = "";
   claveRecibida: string = "";
 
-  constructor(private alertController: AlertController, private toastController: ToastController, private router: Router, private activeRouter: ActivatedRoute) {
-    //nos suscribimos a la promise de recepcion de datos
-    this.activeRouter.queryParams.subscribe(param =>{
-      //pregintamos si viene informacion en la redireccion
-      if(this.router.getCurrentNavigation()?.extras.state){
-        this,this.claveRecibida = this.router.getCurrentNavigation()?.extras?.
-        state?.['claveEnviado'];
-        this.usuarioRecibido = this.router.getCurrentNavigation()?.extras?.
-        state?.['usuarioEnviado'];  
-
-      }
-    }) 
-
+  constructor(private bd: BdregistroService,private alertController: AlertController, private toastController: ToastController, private router: Router, private activeRouter: ActivatedRoute) {
+    
 
    }
 
    login(){
-    if (this.usuario == this.usuarioRecibido && this.clave == this.claveRecibida){
-      this.presentAlert("Bienvenido ");
-      this.router.navigate(['/home']);
-    }else{
-      this.presentAlert("Usuario y/o clave incorrecta");
-    }
+      //verificar que no esten vacios y luego si no estan vacios llamar al login de BD
+      this.bd.IniciarSesion(this.usuario, this.clave);
    }
 
 
-  loginAdmin(){
-    if(this.usuario == this.userCorrecto && this.clave == this.claveCorrecta){
-      this.presentAlert("Bienvenido Administrador");
-      this.router.navigate(['/pantallaadmin']);
-    }else{
-      this.presentAlert("Usuario y/o Clave incorrecta");
-    }
-  }
 
   async presentAlert(msj:string) {
     const alert = await this.alertController.create({
