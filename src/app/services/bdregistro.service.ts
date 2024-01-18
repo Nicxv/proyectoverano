@@ -136,6 +136,8 @@ export class BdregistroService {
     return this.conexionBD.executeSql('SELECT id_usuario FROM usuario WHERE correo = ? AND clave = ?', [correo,clave]).then(res=>{
       if(res.rows.length > 0){
         this.presentAlert("Bienvenido usuario");
+        // Almacenar información de sesión en localStorage
+      localStorage.setItem('token', 'token_de_autenticacion'); // Puedes usar un token real o algún otro identificador.
         let n: NavigationExtras ={
           state: {
             idEnviado: res.rows.item(0).id_usuario
@@ -149,6 +151,16 @@ export class BdregistroService {
       this.presentAlert("Error en inicio sesion: " + JSON.stringify(e));
     })
 
+  }
+  CerrarSesion() {
+    // Lógica para cerrar sesión, como limpiar el token, eliminar datos de sesión, etc.
+    // Puedes usar localStorage, sessionStorage o cualquier otro mecanismo que prefieras.
+  
+    // Ejemplo usando localStorage:
+    localStorage.removeItem('token'); // Cambia 'token' por el nombre que uses para almacenar datos de sesión.
+  
+    // Redirigir a la página de inicio de sesión.
+    this.router.navigate(['/login']);
   }
 
   buscarUsuarios(){
@@ -166,9 +178,14 @@ export class BdregistroService {
             id_usuario: res.rows.item(i).id_usuario,
             correo: res.rows.item(i).correo,
             clave: res.rows.item(i).clave,
+            nombreu: res.rows.item(i).nombreu,
+            apellido: res.rows.item(i).apellido,
+            telefono: res.rows.item(i).telefono,
+            foto: res.rows.item(i).foto,
             fk_id_rol: res.rows.item(i).fk_id_rol,
             id_rol: res.rows.item(i).id_rol,
-            nombre: res.rows.item(i).nombre
+            nombre: res.rows.item(i).nombre,
+           
           })
         }
       }
