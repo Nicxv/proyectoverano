@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
    login(){
       //verificar que no esten vacios y luego si no estan vacios llamar al login de BD
       this.bd.IniciarSesion(this.usuario, this.clave);
+      this.usuarioAutenticado = this.bd.UsuarioAutenticado; 
+
    }
 
 
@@ -42,6 +44,8 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    // Inicializar el estado de autenticación al cargar el componente
+    this.usuarioAutenticado = this.bd.UsuarioAutenticado;
   }
  
 }
