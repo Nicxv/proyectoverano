@@ -6,7 +6,7 @@ describe('ListarPage', () => {
   let component: ListarPage;
   let fixture: ComponentFixture<ListarPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       providers: [SQLite]
     }).compileComponents();
@@ -14,7 +14,7 @@ describe('ListarPage', () => {
     fixture = TestBed.createComponent(ListarPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
