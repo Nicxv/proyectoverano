@@ -15,10 +15,11 @@
     <ion-card-content>
       <div style="text-align: center;"><h1>Mi perfil</h1>
       </div>
-      <p>Nombre: {{ nombreRecibido }}</p>
-      <p>Usuario: {{ usuarioRecibido}} </p>
-      <p>Email: {{mailRecibido}} </p>
-      <p>Telefono: {{telefonoRecibido}} </p>
+      <ion-item-sliding ngFor="let x of perfil">
+      <p>Nombre: {{x.nombre}}</p>
+      <p>Apellido: {{x.apellido}} </p>
+      <p>Email:  {{}} </p>
+      <p>Telefono: </p>
 
       <div class="divbtn"><ion-button size="small" expand="block">
         Registrarse
@@ -26,6 +27,7 @@
       <ion-button size="small" expand="block">
         Modificar
       </ion-button></div>
+    </ion-item-sliding>
 
     </ion-card-content>
   </ion-card>
