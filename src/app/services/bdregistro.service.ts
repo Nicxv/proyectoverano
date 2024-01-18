@@ -16,7 +16,7 @@ export class BdregistroService {
 
   //variables para las tablas de nuestra base de datos
   tablaRol: string = "CREATE TABLE IF NOT EXISTS rol(id_rol INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
-  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, correo VARCHAR(100) NOT NULL, clave VARCHAR(16) NOT NULL, nombre VARCHAR(50), apellido VARCHAR(50), telefono VARCHAR(12), foto blob, fk_id_rol INTEGER, FOREIGN KEY(fk_id_rol) REFERENCES rol(id_rol));";
+  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS usuario(id_usuario INTEGER PRIMARY KEY autoincrement, correo VARCHAR(100) NOT NULL, clave VARCHAR(16) NOT NULL, nombreu VARCHAR(50), apellido VARCHAR(50), telefono VARCHAR(12), foto blob, fk_id_rol INTEGER, FOREIGN KEY(fk_id_rol) REFERENCES rol(id_rol));";
 
   tablaCategoria: string = "CREATE TABLE IF NOT EXISTS categoria(id_categoria INTEGER PRIMARY KEY autoincrement, nombre VARCHAR(20) NOT NULL);";
   tablaProducto: string = "CREATE TABLE IF NOT EXISTS producto(id_producto INTEGER PRIMARY KEY autoincrement, nombrep VARCHAR(30) NOT NULL, descripcion VARCHAR(100) NOT NULL, stock INTEGER NOT NULL, precio INTEGER NOT NULL, foto BLOB NOT NULL , fk_id_categoria INTEGER, FOREIGN KEY(fk_id_categoria) REFERENCES categoria(id_categoria));";
@@ -136,6 +136,8 @@ export class BdregistroService {
     return this.conexionBD.executeSql('SELECT id_usuario FROM usuario WHERE correo = ? AND clave = ?', [correo,clave]).then(res=>{
       if(res.rows.length > 0){
         this.presentAlert("Bienvenido usuario");
+        // Almacenar información de sesión en localStorage
+      localStorage.setItem('token', 'token_de_autenticacion'); // Puedes usar un token real o algún otro identificador.
         let n: NavigationExtras ={
           state: {
             idEnviado: res.rows.item(0).id_usuario
@@ -149,6 +151,16 @@ export class BdregistroService {
       this.presentAlert("Error en inicio sesion: " + JSON.stringify(e));
     })
 
+  }
+  CerrarSesion() {
+    // Lógica para cerrar sesión, como limpiar el token, eliminar datos de sesión, etc.
+    // Puedes usar localStorage, sessionStorage o cualquier otro mecanismo que prefieras.
+  
+    // Ejemplo usando localStorage:
+    localStorage.removeItem('token'); // Cambia 'token' por el nombre que uses para almacenar datos de sesión.
+  
+    // Redirigir a la página de inicio de sesión.
+    this.router.navigate(['/login']);
   }
 
   buscarUsuarios(){
@@ -166,9 +178,14 @@ export class BdregistroService {
             id_usuario: res.rows.item(i).id_usuario,
             correo: res.rows.item(i).correo,
             clave: res.rows.item(i).clave,
+            nombreu: res.rows.item(i).nombreu,
+            apellido: res.rows.item(i).apellido,
+            telefono: res.rows.item(i).telefono,
+            foto: res.rows.item(i).foto,
             fk_id_rol: res.rows.item(i).fk_id_rol,
             id_rol: res.rows.item(i).id_rol,
-            nombre: res.rows.item(i).nombre
+            nombre: res.rows.item(i).nombre,
+           
           })
         }
       }
@@ -206,9 +223,9 @@ export class BdregistroService {
   }
 
  
-  insertarUsuario(nombre:string, apellido: string, correo:string, telefono:string, clave:string, foto: any,fk_id_rol:number){
+  insertarUsuario(nombreu:string, apellido: string, correo:string, telefono:string, clave:string, foto: any,fk_id_rol:number){
     //ejecutamos el insert
-    return this.conexionBD.executeSql('INSERT INTO usuario(nombre, apellido, correo, telefono, clave, foto, fk_id_rol) VALUES (?,?,?,?,?,?,?)',[nombre, apellido, correo, telefono, clave, foto, fk_id_rol]).then(res=>{
+    return this.conexionBD.executeSql('INSERT INTO usuario(nombreu, apellido, correo, telefono, clave, foto, fk_id_rol) VALUES (?,?,?,?,?,?,?)',[nombreu, apellido, correo, telefono, clave, foto, fk_id_rol]).then(res=>{
       //this.buscarUsuarios();
       this.presentAlert("Usuario Registrado!");
       this.router.navigate(['/login']);
