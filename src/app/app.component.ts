@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BdregistroService } from './services/bdregistro.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,5 @@ import { BdregistroService } from './services/bdregistro.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private bd: BdregistroService) {}
-  cerrarSesion() {
-    
-    this.bd.CerrarSesion();
-  }
+  constructor() {}
 }
