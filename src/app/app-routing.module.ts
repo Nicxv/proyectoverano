@@ -125,13 +125,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/apirest/apirest.module').then( m => m.ApirestPageModule)
   },
 
+ 
   {
+    path: 'modificarperfil',
+    loadChildren: () => import('./pages/modificarperfil/modificarperfil.module').then( m => m.ModificarperfilPageModule)
+  },
+
+ {
 /* La de abajo es la pagina de error, siempre debe ir al ultimo,
    cuando creen una pagina, deben mover la recien creada arriba de la pag de error*/
     path: '**',
     loadChildren: () => import('./pages/pagina3/pagina3.module').then( m => m.Pagina3PageModule)
   },
-
   
 
 ];

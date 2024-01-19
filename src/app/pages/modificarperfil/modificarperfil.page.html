@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>modificarperfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h2 class="ion-text-center">Modificar Usuario</h2>
+
+
+  <ion-item>
+    <ion-input [(ngModel)]="perfilRecibido.nombreu" label="nombreu: " labelPlacement="floating" placeholder="Ingrese su Nombre" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="perfilRecibido.apellido" label="apellido: " labelPlacement="floating" placeholder="Ingrese su Apellido" type="text"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-input  [(ngModel)]="perfilRecibido.telefono" label="Telefono" labelPlacement="floating" placeholder="+569-88888888"
+      type="number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="perfilRecibido.foto" label="Correo: " labelPlacement="floating" placeholder="ejemplo@dominio.cl" type="email"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+  <ion-button (click)="tomarFoto()">Tomar foto</ion-button>
+</ion-item>
+
+<ion-item>
+  <img *ngIf="perfilRecibido.foto" src="{{ perfilRecibido.foto }}" alt="Sin foto" width="150px" height="150px">
+</ion-item>
+ 
+<ion-item>
+  <ion-button color="tertiary" [routerLink]="['/perfil']">Atras</ion-button>
+  <ion-button color="success" (click)="modificarPerfil()">Modificar</ion-button>
+</ion-item>
+  
+</ion-content>

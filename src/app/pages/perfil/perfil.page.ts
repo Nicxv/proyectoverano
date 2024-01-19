@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { BdregistroService } from 'src/app/services/bdregistro.service';
+import { RegistroPage } from '../registro/registro.page';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-perfil',
@@ -9,11 +11,25 @@ import { BdregistroService } from 'src/app/services/bdregistro.service';
 })
 export class PerfilPage implements OnInit {
 
-  perfil: any;
+  perfilRecibido: any;
 
 
-  constructor(private bd: BdregistroService, private activeRouter: ActivatedRoute, private router: Router) {}
-    
+  constructor( private router:Router, private activedRouter: ActivatedRoute, private bd: BdregistroService) {
+    this.activedRouter.queryParams.subscribe(param=>{
+      if(this.router.getCurrentNavigation()?.extras.state){
+      this.perfilRecibido = this.router.getCurrentNavigation()?.extras?.state?.['perfilRecibido'];
+      }
+    })
+  }
+  tomarFoto = async() =>{
+    const imagen = await Camera.getPhoto({
+    quality: 90,
+    allowEditing: false,
+    resultType: CameraResultType.DataUrl
+    });
+    this.perfilRecibido.foto = imagen.dataUrl;
+
+  };
 
   ngOnInit() {
   
@@ -21,7 +37,7 @@ export class PerfilPage implements OnInit {
       if(res){
         //subscribo al observable de usuarios
         this.bd.fetchUsuarios().subscribe(data=>{
-          this.perfil = data;
+          this.perfilRecibido = data;
         })
       }
     })
@@ -34,9 +50,14 @@ export class PerfilPage implements OnInit {
       }
     }
     //redireccionar a la pagina de modificar
-    this.router.navigate(['/'],navigationExtras);
+    this.router.navigate(['/modificarperfil'],navigationExtras);
   }
 
+  modificarPerfil(){
+    this.bd.modificarPerfil(this.perfilRecibido.nombreu, this.perfilRecibido.apellido, this.perfilRecibido.correo, this.perfilRecibido.telefono, this.perfilRecibido.foto, );
+
+    this.router.navigate(['/modificarperfil']);
+   }
 
 
 }
