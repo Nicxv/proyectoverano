@@ -10,6 +10,9 @@ import { NavigationExtras, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class BdregistroService {
+  
+  private usuarioAutenticadoSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public usuarioAutenticado$ = this.usuarioAutenticadoSubject.asObservable();
 
   //variable para guardar la conexion a la base de datos
   public conexionBD!: SQLiteObject;
@@ -70,7 +73,7 @@ export class BdregistroService {
     this.platform.ready().then(() => {
       //crear la base de datos
       this.sqlite.create({
-        name: 'usuariostest2.db',
+        name: 'usuariostest3.db',
         location: 'default'
       }).then((db: SQLiteObject) => {
         //guardar mi conexion a base de datos
@@ -136,6 +139,9 @@ export class BdregistroService {
     return this.conexionBD.executeSql('SELECT id_usuario FROM usuario WHERE correo = ? AND clave = ?', [correo,clave]).then(res=>{
       if(res.rows.length > 0){
         this.presentAlert("Bienvenido usuario");
+        let idUsuario = res.rows.item(0).id_usuario;
+        this.usuarioAutenticadoSubject.next(true);
+        
         let n: NavigationExtras ={
           state: {
             idEnviado: res.rows.item(0).id_usuario
@@ -151,9 +157,14 @@ export class BdregistroService {
 
   }
 
+  CerrarSesion() {
+    this.usuarioAutenticadoSubject.next(false); // Emitir false al observable
+    // Puedes realizar otras tareas de limpieza aquí si es necesario
+  }
+
   buscarUsuarios(){
     //mandar a ejecutar la sentencia sql
-    return this.conexionBD.executeSql('SELECT * FROM usuario INNER JOIN rol ON usuario.fk_id_rol = rol.id_rol',[]).then(res=>{
+    return this.conexionBD.executeSql('SELECT * FROM usuariou INNER JOIN rol ON usuario.fk_id_rol = rol.id_rol',[]).then(res=>{
       //si la consulta se ejecuta correctamente
       //guardamos los registros en una lista
       let items: Usuarios[] = [];
@@ -166,6 +177,10 @@ export class BdregistroService {
             id_usuario: res.rows.item(i).id_usuario,
             correo: res.rows.item(i).correo,
             clave: res.rows.item(i).clave,
+            nombreu: res.rows.item(i).nombreu,
+            apellido: res.rows.item(i).apellido,
+            telefono: res.rows.item(i).telefono,
+            foto: res.rows.item(i).foto,
             fk_id_rol: res.rows.item(i).fk_id_rol,
             id_rol: res.rows.item(i).id_rol,
             nombre: res.rows.item(i).nombre
