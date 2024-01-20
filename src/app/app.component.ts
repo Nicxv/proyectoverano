@@ -25,6 +25,9 @@ export class AppComponent {
 
     // Agrega aquí cualquier otra lógica relacionada con cerrar sesión (por ejemplo, redirección a la página de inicio)
   }
+  irAVerPerfil() {
+    this.router.navigate(['/perfil']);
+  }
 
   async presentToast(msj:string) {
     const toast = await this.toastController.create({
