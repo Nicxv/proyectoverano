@@ -13,7 +13,7 @@ export class BdregistroService {
   
   private usuarioAutenticadoSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public usuarioAutenticado$ = this.usuarioAutenticadoSubject.asObservable();
-  
+  public usuarioLogeado: any;
 
 
   //variable para guardar la conexion a la base de datos
@@ -158,6 +158,15 @@ export class BdregistroService {
         if (res.rows.length > 0) {
           let idUsuario = res.rows.item(0).id_usuario;
           let rolUsuario = res.rows.item(0).fk_id_rol;
+          this.usuarioLogeado = {
+            id: idUsuario,
+            nombre: res.rows.item(0).nombreu,
+            apellido: res.rows.item(0).apellido,
+            telefono: res.rows.item(0).telefono,
+            correo: correo, // Puedes usar el valor pasado como argumento
+            foto: res.rows.item(0).foto,
+            rol: rolUsuario
+          };
   
           this.presentAlert("Bienvenido usuario");
   

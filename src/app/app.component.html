@@ -73,6 +73,7 @@
       </ion-menu-toggle>
 
   </ion-list>
+  <ion-button *ngIf="usuarioAutenticado | async" (click)="verPerfil()">Ver Perfil</ion-button>
   <ion-button color="danger" *ngIf="usuarioAutenticado" (click)="cerrarSesion()">Cerrar Sesión</ion-button>
 
   </ion-menu>
