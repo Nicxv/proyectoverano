@@ -25,11 +25,6 @@ export class AppComponent {
 
     // Agrega aquí cualquier otra lógica relacionada con cerrar sesión (por ejemplo, redirección a la página de inicio)
   }
-  verPerfil() {
-    this.router.navigate(['/verperfil'], {
-      state: { usuario: this.bd.usuarioLogeado }
-    });
-  }
 
   async presentToast(msj:string) {
     const toast = await this.toastController.create({

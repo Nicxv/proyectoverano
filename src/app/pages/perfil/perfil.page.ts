@@ -12,11 +12,14 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 export class PerfilPage implements OnInit {
 
   perfilRecibido: any;
-  usuario: any;
 
 
   constructor( private router:Router, private activedRouter: ActivatedRoute, private bd: BdregistroService) {
-  
+    this.activedRouter.queryParams.subscribe(param=>{
+      if(this.router.getCurrentNavigation()?.extras.state){
+      this.perfilRecibido = this.router.getCurrentNavigation()?.extras?.state?.['perfilRecibido'];
+      }
+    })
   }
   tomarFoto = async() =>{
     const imagen = await Camera.getPhoto({
@@ -29,13 +32,15 @@ export class PerfilPage implements OnInit {
   };
 
   ngOnInit() {
-    this.activedRouter.queryParams.subscribe(params => {
-      if (params && params['state']) {
-        this.usuario = params['state'].usuario;
-      }
-    });
   
-
+    this.bd.dbState().subscribe(res=>{
+      if(res){
+        //subscribo al observable de usuarios
+        this.bd.fetchUsuarios().subscribe(data=>{
+          this.perfilRecibido = data;
+        })
+      }
+    })
   }
   modificarU(x:any){
     //variable de contexto para enviar los datos
