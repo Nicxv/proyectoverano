@@ -10,6 +10,7 @@ import { NavigationExtras, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class BdregistroService {
+  usuarioLogeado: any;
   
   private usuarioAutenticadoSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public usuarioAutenticado$ = this.usuarioAutenticadoSubject.asObservable();
@@ -142,13 +143,13 @@ export class BdregistroService {
     if (correo === 'nico@admin.com' && clave === '123456789') {
       this.presentAlert("Bienvenido administrador");
       this.usuarioAutenticadoSubject.next(true);
-      
+  
       let n: NavigationExtras = {
         state: {
           idEnviado: 1 // ID del usuario administrador
         }
       };
-      
+  
       this.router.navigate(['/pantallaadmin'], n);
       return;
     }
@@ -156,7 +157,7 @@ export class BdregistroService {
     return this.conexionBD.executeSql('SELECT id_usuario, fk_id_rol FROM usuario WHERE correo = ? AND clave = ?', [correo, clave])
       .then(res => {
         if (res.rows.length > 0) {
-          let idUsuario = res.rows.item(0).id_usuario;
+          this.usuarioLogeado = res.rows.item(0);
           let rolUsuario = res.rows.item(0).fk_id_rol;
   
           this.presentAlert("Bienvenido usuario");
@@ -165,7 +166,7 @@ export class BdregistroService {
   
           let n: NavigationExtras = {
             state: {
-              idEnviado: idUsuario
+              idEnviado: this.usuarioLogeado.id_usuario
             }
           };
   
@@ -174,9 +175,9 @@ export class BdregistroService {
             this.router.navigate(['/home'], n);
           } else if (rolUsuario === 2) {
             this.router.navigate(['/pantallaadmin'], n);
+          } else {
+            this.router.navigate(['/ver-perfil'], n); // Redirige a la página de perfil para el resto de los usuarios
           }
-          
-  
         } else {
           this.presentAlert("Usuario y/o Contraseña incorrecto");
         }
@@ -185,6 +186,7 @@ export class BdregistroService {
         this.presentAlert("Error en inicio sesion: " + JSON.stringify(e));
       });
   }
+  
   
   CerrarSesion() {
     this.usuarioAutenticadoSubject.next(false); // Emitir false al observable
@@ -319,5 +321,20 @@ export class BdregistroService {
     })
 
   
+  }
+
+  ObtenerDatosUsuarioPorId(idUsuario: number) {
+    return this.conexionBD.executeSql('SELECT nombreu, apellido, telefono, correo, foto FROM usuario WHERE id_usuario = ?', [idUsuario])
+      .then(res => {
+        if (res.rows.length > 0) {
+          return res.rows.item(0);
+        } else {
+          return null;
+        }
+      })
+      .catch(e => {
+        this.presentAlert("Error al obtener datos del usuario: " + JSON.stringify(e));
+        return null;
+      });
   }
 }
