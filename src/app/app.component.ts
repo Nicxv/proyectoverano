@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BdregistroService } from './services/bdregistro.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   usuarioAutenticado: boolean = false;
 
-  constructor(private bd: BdregistroService, private router:Router) {}
+  constructor(private toastController: ToastController,private bd: BdregistroService, private router:Router) {}
 
   ngOnInit(){
     this.bd.usuarioAutenticado$.subscribe((estado: boolean) => {
@@ -20,7 +21,18 @@ export class AppComponent {
   cerrarSesion() {
     this.bd.CerrarSesion();
     this.router.navigate(['/login']);
+    this.presentToast("Sesión Terminada");
 
     // Agrega aquí cualquier otra lógica relacionada con cerrar sesión (por ejemplo, redirección a la página de inicio)
+  }
+
+  async presentToast(msj:string) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 3000,
+      position: 'bottom',
+    });
+
+    await toast.present();
   }
 }

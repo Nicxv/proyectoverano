@@ -13,8 +13,10 @@
   <ion-list>
     <ion-item-sliding *ngFor="let x of arregloUsuarios">
       <ion-item>
+        <ion-label>Correo: {{ x.nombreu }}</ion-label>
+        <ion-label>Correo: {{ x.apellido }}</ion-label>
         <ion-label>Correo: {{ x.correo }}</ion-label>
-        <ion-label>Clave: {{ x.clave }}</ion-label>
+        <ion-label>Clave: {{ x.telefono }}</ion-label>
         <ion-label>Rol: {{ x.nombre }}</ion-label>
       </ion-item>
   
@@ -27,7 +29,7 @@
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/agregar']">
+    <ion-fab-button [routerLink]="['/registro']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

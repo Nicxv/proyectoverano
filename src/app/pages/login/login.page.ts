@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
 
   usuarioRecibido: string = "";
   claveRecibida: string = "";
+  usuarioAutenticado: boolean = false;
 
   constructor(private bd: BdregistroService,private alertController: AlertController, private toastController: ToastController, private router: Router, private activeRouter: ActivatedRoute) {
     
@@ -27,6 +28,7 @@ export class LoginPage implements OnInit {
    login(){
       //verificar que no esten vacios y luego si no estan vacios llamar al login de BD
       this.bd.IniciarSesion(this.usuario, this.clave);
+      
    }
 
 
@@ -42,6 +44,9 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.bd.usuarioAutenticado$.subscribe((estado: boolean) => {
+      this.usuarioAutenticado = estado;
+    });
   }
  
 }

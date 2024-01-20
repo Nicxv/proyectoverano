@@ -10,9 +10,9 @@
 
 
 
-<ion-content [fullscreen]="true">
+<ion-content  [fullscreen]="true">
 
-
+<div *ngIf="!usuarioAutenticado">
   <ion-card>
     <ion-card-header>
       
@@ -60,6 +60,11 @@
 
 
   </ion-card>
+</div>
+
+  <div *ngIf="usuarioAutenticado">
+    <p>La página de registro está deshabilitada porque el usuario ha iniciado sesión.</p>
+  </div>
 
   <app-componente1></app-componente1>
 

@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div *ngIf="!usuarioAutenticado">
   <ion-card >
     <div style="text-align: center;"><img width="250px" src="assets/icon/logoPerfil.png" alt="logoPerfil"></div>
    <!-- <img alt="imagen login" src="https://www.elindependiente.com/wp-content/uploads/2018/12/samsung-656x368.jpg"/>  -->
@@ -33,6 +34,10 @@
     </ion-list>
     </ion-card-content>
   </ion-card>
+</div>
+<div *ngIf="usuarioAutenticado">
+  <p>La página de registro está deshabilitada porque el usuario ya ha iniciado sesión.</p>
+</div>
 
   <div style="text-align: center; color: rgb(150, 150, 150);"><app-componente1></app-componente1></div>
   

@@ -21,7 +21,7 @@ export class RegistroPage implements OnInit {
   usuarioError: string="";
   claveError: string="";
   fotoU: any;
- 
+  usuarioAutenticado: boolean = false;
 
 
 
@@ -62,6 +62,9 @@ export class RegistroPage implements OnInit {
 
 
   ngOnInit() {
+    this.bd.usuarioAutenticado$.subscribe((estado: boolean) => {
+      this.usuarioAutenticado = estado;
+    });
   }
 
 }

@@ -13,6 +13,7 @@ export class BdregistroService {
   
   private usuarioAutenticadoSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public usuarioAutenticado$ = this.usuarioAutenticadoSubject.asObservable();
+  
 
 
   //variable para guardar la conexion a la base de datos
@@ -138,34 +139,44 @@ export class BdregistroService {
 
 
   IniciarSesion(correo: string, clave: string) {
-    // Verificar si el usuario es un administrador registrado directamente en la base de datos
     if (correo === 'nico@admin.com' && clave === '123456789') {
       this.presentAlert("Bienvenido administrador");
       this.usuarioAutenticadoSubject.next(true);
-  
+      
       let n: NavigationExtras = {
         state: {
-          idEnviado: 1 // Puedes ajustar el ID del administrador según sea necesario
+          idEnviado: 1 // ID del usuario administrador
         }
-      }
+      };
+      
       this.router.navigate(['/pantallaadmin'], n);
       return;
     }
   
-    // Si no es un administrador directamente registrado, realizar la consulta en la base de datos
-    return this.conexionBD.executeSql('SELECT id_usuario FROM usuario WHERE correo = ? AND clave = ?', [correo, clave])
+    return this.conexionBD.executeSql('SELECT id_usuario, fk_id_rol FROM usuario WHERE correo = ? AND clave = ?', [correo, clave])
       .then(res => {
         if (res.rows.length > 0) {
-          this.presentAlert("Bienvenido usuario");
           let idUsuario = res.rows.item(0).id_usuario;
+          let rolUsuario = res.rows.item(0).fk_id_rol;
+  
+          this.presentAlert("Bienvenido usuario");
+  
           this.usuarioAutenticadoSubject.next(true);
   
           let n: NavigationExtras = {
             state: {
               idEnviado: idUsuario
             }
+          };
+  
+          // Separar por rol y redirigir a la página correspondiente
+          if (rolUsuario === 1) {
+            this.router.navigate(['/home'], n);
+          } else if (rolUsuario === 2) {
+            this.router.navigate(['/pantallaadmin'], n);
           }
-          this.router.navigate(['/home'], n);
+          
+  
         } else {
           this.presentAlert("Usuario y/o Contraseña incorrecto");
         }
@@ -175,8 +186,6 @@ export class BdregistroService {
       });
   }
   
-  
-
   CerrarSesion() {
     this.usuarioAutenticadoSubject.next(false); // Emitir false al observable
     // Puedes realizar otras tareas de limpieza aquí si es necesario
@@ -244,7 +253,7 @@ export class BdregistroService {
   insertarUsuario(nombreu:string, apellido: string, correo:string, telefono:string, clave:string, foto: any,fk_id_rol:number){
     //ejecutamos el insert
     return this.conexionBD.executeSql('INSERT INTO usuario(nombreu, apellido, correo, telefono, clave, foto, fk_id_rol) VALUES (?,?,?,?,?,?,?)',[nombreu, apellido, correo, telefono, clave, foto, fk_id_rol]).then(res=>{
-      //this.buscarUsuarios();
+      this.buscarUsuarios();
       this.presentAlert("Usuario Registrado!");
       this.router.navigate(['/login']);
     }).catch(e=>{
