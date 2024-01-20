@@ -320,25 +320,4 @@ export class BdregistroService {
 
   
   }
-  ObtenerPerfilUsuario(idUsuario: number) {
-    return this.conexionBD.executeSql('SELECT nombreu, apellido, telefono, correo, foto FROM usuario WHERE id_usuario = ?', [idUsuario])
-      .then(res => {
-        if (res.rows.length > 0) {
-          return {
-            nombre: res.rows.item(0).nombreu,
-            apellido: res.rows.item(0).apellido,
-            telefono: res.rows.item(0).telefono,
-            correo: res.rows.item(0).correo,
-            foto: res.rows.item(0).foto
-          };
-        } else {
-          return null;
-        }
-      })
-      .catch(e => {
-        this.presentAlert("Error al obtener el perfil del usuario:" + JSON.stringify(e));
-        return null;
-      })
-  }
 }
-
