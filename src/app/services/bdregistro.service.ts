@@ -76,7 +76,7 @@ export class BdregistroService {
     this.platform.ready().then(() => {
       //crear la base de datos
       this.sqlite.create({
-        name: 'usuariostest7.db',
+        name: 'usuariostest8.db',
         location: 'default'
       }).then((db: SQLiteObject) => {
         //guardar mi conexion a base de datos
@@ -136,6 +136,28 @@ export class BdregistroService {
 
   }
 
+  ObtenerUsuarioPorId(id_usuario: number) {
+    return this.conexionBD.executeSql('SELECT nombreu, apellido, telefono, correo, foto FROM usuario WHERE id_usuario = ?', [id_usuario])
+      .then(res => {
+        if (res.rows.length > 0) {
+          return {
+            nombre: res.rows.item(0).nombreu,
+            apellido: res.rows.item(0).apellido,
+            telefono: res.rows.item(0).telefono,
+            correo: res.rows.item(0).correo,
+            foto: res.rows.item(0).foto
+          };
+        } else {
+          return null;
+        }
+      })
+      .catch(e => {
+        // Manejar errores si es necesario
+        this.presentAlert("Error al obtener información del usuario: " + JSON.stringify(e));
+        throw e;
+      });
+  }
+
 
 
   IniciarSesion(correo: string, clave: string) {
@@ -156,8 +178,9 @@ export class BdregistroService {
     return this.conexionBD.executeSql('SELECT id_usuario, fk_id_rol FROM usuario WHERE correo = ? AND clave = ?', [correo, clave])
       .then(res => {
         if (res.rows.length > 0) {
-          let idUsuario = res.rows.item(0).id_usuario;
-          let rolUsuario = res.rows.item(0).fk_id_rol;
+          let id_usuario = res.rows.item(0).id_usuario;
+          let fk_id_rol = res.rows.item(0).fk_id_rol;
+          
   
           this.presentAlert("Bienvenido usuario");
   
@@ -165,14 +188,14 @@ export class BdregistroService {
   
           let n: NavigationExtras = {
             state: {
-              idEnviado: idUsuario
+              idEnviado: id_usuario
             }
           };
   
           // Separar por rol y redirigir a la página correspondiente
-          if (rolUsuario === 1) {
-            this.router.navigate(['/home'], n);
-          } else if (rolUsuario === 2) {
+          if (fk_id_rol === 1) {
+            this.router.navigate(['/perfil'], n);
+          } else if (fk_id_rol === 2) {
             this.router.navigate(['/pantallaadmin'], n);
           }
           
